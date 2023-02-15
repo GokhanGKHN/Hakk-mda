@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+/* <canvas> elemanını, özellikle JavaScript kullanarak, farklı çizimler yaratmak için 
+kullanabilirsiniz. <canvas> elemanı, grafikler için sadece bir taşıyıcıdır. 
+Grafik çizimi ise, JavaScript gibi bir betik (script) dili yardımıyla gerçekleştirilir.
+<canvas> elemanı grafikleri çözünürlüğe (resolution) bağlıdır. Her çözünürlükte farklı kalitede görüntülenir. Olay yönetici desteği mevcut değildir. Metin yazımı düşük kalitededir. Grafik yoğunluklu oyunlar için önerilir. Sonuçta oluşan görüntü PNG ya da JPG dosyası olarak saklanabilir.
+*/
+        #canv {border:1px solid #00ff4c;}
+</style>
+</head>
+<body>
+<!--id: JavaScript kodunuzdan, <canvas> elemanına erişebilmek için bu elemana bir id değeri atamalısınız.
+width: <canvas> elemanının genişliği için gereklidir.
+height: <canvas> elemanının yüksekliği için gereklidir.
+-->
+<canvas id="canv" width="600" height="400">
+<!--Aşağıdaki kod parçasında, fillRect(x, y , genislik, yukseklik) komutu ile içi dolu olan, sol üst köşesi 
+(x,y)'de olan, genişliği ve yüksekliği verilen bir dikdörtgenin nasıl çizildiğini görebilirsiniz:-->
+<script>
+var canvas =document.getElementById("canv")
+context =canvas.getContext("2d")
+context.fillStyle='blue';
+context.fillRect(10,20,200,100)
+</script>
+<script>
+var canvas = document.getElementById("canv")
+context=canvas.getContext("2d")
+context.fileStyle='yellow';
+context.fillRect=(25,30,350,250);
+context.strokeStyle="#fa00ee";
+context.lineWidth=6;
+context.lineCap="round";
+context.arc(40,30,40,0,Math.PI,false);
+context.stroke();
+</script>
+<!--Yukarda da gördüğünüz üzere, <canvas> elemanının, getContext adlı bir DOM metodu mevcuttur. 
+getContext(‘2d'), HTML5 nesnesi içinde hazır bir ifadedir; 
+çizimlerin farklı özellik ve metodlarına erişmenizi sağlar.
+-->
+    </canvas>
+<!--Scalable Vector Graphics (Ölçeklenebilir Vektör Grafikleri), XML'de, iki boyutlu grafiklerin (2D) ve grafik 
+uygulamalarının tanımlanması konusunda kullanılan bir dildir. <svg> etiketi de bu dosyaların HTML5'te 
+kullanılmasına olanak veren etikettir.-->
+<!--Aşağıdaki örnekle kırık çizgiler oluşturabilirsiniz.SVG biçimindeki görseller oyunlar için elverişli değildir.
+Harita türü uygulamalar içinse çok kullanışlıdır.-->
+    <svg height="150"width="150">
+        <circle cx="75" cy="75" r="60" stroke="blue" stroke width="4" fill="green"></circle>
+    </svg>
+<svg height="250" width="450">
+<polyline points="20,25 40,45 60,70 90,125 127,145 205,190">
+</svg>
+</polyline>
+</svg>
+</body>
+</html>
