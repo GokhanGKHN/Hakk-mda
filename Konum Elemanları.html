@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p id="KUL_DENE">KULLANICI KONUMU:</p>
+        <button onclick="getuserLocation()"> KONUM KONTROL</button>
+        <div id="HAR_DENE"></div>
+        <!--HTML5'te, Geolocation API'ları sayesinde, sayfanızı ziyaret edenler, kendi fiziksel konumlarını sizin 
+            web uygulamanızla paylaşabilirler. Bu tür uygulamalarda tarayıcı, kullanıcının konumunu paylaşmak isteyip 
+            istemediğini soracaktır. O andaki konum bilgisi ve ziyaretçinin IP adresi, en yakın kablosuz ağ erişim 
+            noktasından alınır.-->
+            <!--Kullanıcının o andaki konumunu bulmak için, getCurrentPosition() metodu kullanılır:-->
+        <script>
+            var x=document.getElementById("KUL_DENE");
+            function getuserLocation(){
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showuserPosition,showbrowserError);
+                }
+                else{
+                    x.innerHTML="TARAYICI GEOLOCATION I DESTEKLEMIYOR";
+                }
+            }
+            
+                function showuserPosition(position) {
+                var latlon=position.coords.latitude+","+position.coords.longitude;
+                var img_url="http://maps.googleapis.com/maps/api/staticmap?center=AIzaSyByXOFB0WiIVVtfLjXhOtUF6R9jQk9lYws"
+                +latlon+"&zoom=13&size=600x300&maptype=roadmap";
+                document.getElementById("HAR_DENE").innerHTML="<img src='"+img_url+"'>";
+                
+            }
+            function showbrowserError(error){
+                switch(error.code)
+                {
+                    case error.PERMISSION_DENIED:
+                    x.innerHTML="KULLANICI GEOLOCATION TALEBINI REDDETTI"
+                    break;
+                    case error.POSITION_UNAVAILABLE:
+                    x.innerHTML="KONUM BILGISI YOK"
+                    break;
+                    case error.TIMEOUT:
+                    x.innerHTML="ZAMAN ASIMI"
+                    break;
+                    case error.UNKNOWN_ERROR:
+                    x.innerHTML="BILINMEYEN HATA"
+                    break;
+                }
+            }
+        </script>
+        </body>
+        </html>
