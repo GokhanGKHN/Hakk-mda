@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<!--HTML5'te, herhangi bir eleman için ekranın bir yerine sürükleme işlemi uygulanabilir 
+    ayrıca native bir sürükle-bırak API'ını hizmete sunmaktadır.
+    Sürükle-bırak işlemi ile ilişkili en çok kullanılan olaylar aşağıda listelenmiştir:
+    ondragstart: Kullanıcı bir nesneyi sürüklemeye başladığı anda oluşur.
+    ondragenter: Sürükleme oluşurken, farenin hedef elemanın üzerine hareket ettirilmesiyle oluşur
+    ondragover: Sürükleme meydana geldiği zaman farenin bir elemanın üzerine hareket ettirilmesiyle tetiklenen olaydır.
+    ondrag: Nesne sürüklenirken fare hareket ettirildiği sürece oluşan olaydır.
+    ondragleave: Bir sürüklenme oluşurken farenin bir elemanı bırakmasıyla oluşur.
+    ondrop: Sürükleme sonunda, bırak işlemi oluştuğu zaman tetiklenir.
+    ondragend: Sürükleme esnasında kullanıcı farenin düğmesini bırakınca oluşur.
+Aşağıdaki kod parçasını çalıştırdıktan sonra, fare yardımıyla mor renkli ve üzerinde 
+"Sürükle" yazan dikdörtgeni sürükleyerek hareket ettirelim; fare bırakılınca nesne eski konumuna dönecek.-->
+<head>
+    <style type="text/css">
+        #KUTU1, #KUTU2 {
+            float:left;padding:10px;margin: 10px; -moz-user-select: none;
+}
+#KUTU1 {background-color: #6633EF; width: 85px; height: 85px;}
+#KUTU2 {background-color: #FF6699; width: 160px;height: 170px ;}
+</style>
+<script type="text/JavaScript">
+      function dragstart (ev) {
+        ev.dataTransfer.effectAllowed='move';
+        ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+        ev.dataTransfer.setDragImage(ev.target,0,0);
+        return true;
+      }
+</script>
+</head>
+<body>
+    <center>
+        <h2>SURUKLE BIRAK-HTML5</h2>
+        <div>UYGULA</div>
+        <div id="KUTU1" draggable="true"
+                ondragstart="return dragStart(event)">
+                <p>SURUKLE</p>
+            </div>
+            <div id="KUTU2"></div>
+        </center>
+    
+<!--İşlem adımları
+İlk adımda ilgili elemanı sürüklenebilir (draggable) hale getirmelisiniz. 
+Bu amaçla aşağıdaki ifadeyi kullanabilirsiniz: <img draggable="true">
+Bir sonraki adım, eleman sürüklenirken ne yapılacağını tanımlamaktır:
+<img id="surukle_nesne" src="xx.png" draggable="true" ondragstart="drag(event)">
+Bir sonraki adımda ise veri tipi ve sürüklenecek elemanın id'si tanımlanmalıdır.
+function drag(event)
+{
+     event.dataTransfer.setData("Text",event.target.id);
+}
+ondragover olayı, sürüklenen nesnenin nerede bırakılacağını belirler. 
+Böylece ondragover olayı için bir eventListener eklemeniz gerekir:
+function allowDrop(event)
+{
+    event.preventDefault();
+}
+Bırak (drop) olayının kabul edilmesi için, "bırak" hedefi, "bırak" olayını dinlemelidir; 
+o nedenle bir ondrop="drop(event)" komutu da eklenmelidir:
+<div id="divMain" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+-->
+
+
+</body>
+
+</html>
